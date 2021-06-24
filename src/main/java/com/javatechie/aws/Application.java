@@ -16,8 +16,12 @@ public class Application {
     private BookRepository bookRepository;
 
     @PostMapping
-    public Book saveBook(@RequestBody Book book) {
-        return bookRepository.save(book);
+    public String saveBook(@RequestParam("name") String name, @RequestParam("price") String price) {
+        Book book = new Book();
+        book.setName(name);
+        book.setPrice(Double.parseDouble(price));
+         bookRepository.save(book);
+         return  "<html>Book saved <a href=\"javascript:history.back()\">Go Back</a></html>";
     }
 
     @GetMapping
