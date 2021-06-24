@@ -1,6 +1,5 @@
 package com.javatechie.aws;
 
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,9 +26,8 @@ public class Application {
     }
 
 
-    @SneakyThrows
     @GetMapping("/{id}")
-    public Book findBook(@PathVariable int id) {
+    public Book findBook(@PathVariable int id) throws Exception {
         Book book = bookRepository.findById(id).orElseThrow(() -> new Exception("Book not available"));
         return book;
     }
